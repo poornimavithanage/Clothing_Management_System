@@ -11,4 +11,5 @@ This application process following functionalities,
         payment details
 
 ## Service Diagram 
-![Ait text](screenshots/Service-Diagram.jpg)
+![Ait text](screenshots/Service- Diagram.jpg)
+
