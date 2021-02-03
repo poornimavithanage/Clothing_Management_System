@@ -1,0 +1,6 @@
+com\poornima\commons\model\order\OrderDetailPK.class
+com\poornima\commons\model\order\OrderDetail.class
+com\poornima\commons\model\customer\Customer.class
+com\poornima\commons\model\payment\Payment.class
+com\poornima\commons\model\product\Product.class
+com\poornima\commons\model\order\Order.class
