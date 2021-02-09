@@ -1,35 +1,26 @@
 package com.poornima.commons.model.order;
 
-import com.poornima.commons.model.product.Product;
-import lombok.Data;
+import lombok.*;
 
-import javax.persistence.EmbeddedId;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+
+import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.List;
 
+@Entity
+@Table(name = "orderDetail")
 @Data
+@NonNull
 public class OrderDetail {
-    @EmbeddedId
-    private OrderDetailPK orderDetailPK;
-    private int qty;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
+    private String productCode;
+    private int quantity;
     private BigDecimal unitPrice;
     @ManyToOne
-    @JoinColumn(name = "orderId", referencedColumnName = "id", insertable = false, updatable = false)
-    private Order order;
-    @ManyToOne
-    @JoinColumn(name = "productCode", referencedColumnName = "code", insertable = false, updatable = false)
-    private Product product;
+    @JoinColumn
+    Order order;
 
-    public OrderDetail(String orderId, String productCode, int qty, BigDecimal unitPrice) {
-        this.orderDetailPK = new OrderDetailPK(orderId, productCode);
-        this.qty = qty;
-        this.unitPrice = unitPrice;
-    }
-
-    public OrderDetail(OrderDetailPK orderDetailPK, int qty, BigDecimal unitPrice) {
-        this.orderDetailPK = orderDetailPK;
-        this.qty = qty;
-        this.unitPrice = unitPrice;
-    }
 }
