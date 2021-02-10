@@ -1,8 +1,13 @@
 package com.poornima.order.orderservice.repository;
 
 import com.poornima.commons.model.order.OrderDetail;
-import com.poornima.commons.model.order.OrderDetailPK;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface OrderDetailRepository extends JpaRepository<OrderDetail, OrderDetailPK> {
+import java.util.List;
+
+@Repository
+public interface OrderDetailRepository extends JpaRepository<OrderDetail, Integer> {
+
+    List<OrderDetail> findByOrderId(int orderId);
 }
