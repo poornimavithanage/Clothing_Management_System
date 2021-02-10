@@ -3,10 +3,13 @@ package com.poornima.product.productservice.controller;
 import com.poornima.commons.model.product.Product;
 import com.poornima.product.productservice.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("services/product-management/products")
@@ -29,6 +32,22 @@ public class ProductServiceController {
     @GetMapping
     public List<Product>getAllProducts(){
     return productService.findAll();
+    }
+
+    @PutMapping(value = "{/code}")
+    public ResponseEntity<Product>update(@RequestBody Product product){
+        Product updateProduct = productService.update(product);
+        return ResponseEntity.ok().body(updateProduct);
+    }
+
+    @DeleteMapping(value = "{/code}")
+    public ResponseEntity deleteProduct(@PathVariable String code){
+        try {
+            productService.delete(code);
+            return ResponseEntity.ok().body("Product deleted Successfully");
+        } catch (NoSuchElementException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Product code does not exist");
+        }
     }
 
 }

@@ -32,4 +32,16 @@ public class ProductServiceImpl implements ProductService{
     public List<Product> findAll() {
         return productRepository.findAll();
     }
+
+    @Override
+    public Product update(Product product) {
+        product.setCode(product.getCode());
+        Product updateProduct = productRepository.save(product);
+        return updateProduct;
+    }
+
+    @Override
+    public void delete(String code) {
+        productRepository.deleteById(code);
+    }
 }
