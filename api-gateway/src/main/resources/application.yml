@@ -1,0 +1,21 @@
+server:
+  port: 8085
+spring:
+  application:
+    name: apigateway
+  cloud:
+    gateway:
+      routes:
+        - id: customer
+          uri: lb://customer
+          predicates:
+            - Path=/services/customer-management/customers/**
+            - id: product
+              uri: lb://product
+            - Path=/services/product-management/products/**
+            - id: order
+                uri: lb://order
+                  - Path=/services/**
+                  - id: payment
+                      uri: lb://payment
+                        - Path=/services/payments/**
