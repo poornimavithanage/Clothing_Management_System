@@ -22,4 +22,13 @@ public class Payment {
     private BigDecimal totalAmount;
 
 
+    public Payment() {
+
+    }
+
+    public Payment(int id, @NonNull int orderId, BigDecimal totalAmount) {
+        this.id = id;
+        this.orderId = orderId;
+        this.totalAmount = totalAmount;
+    }
 }
