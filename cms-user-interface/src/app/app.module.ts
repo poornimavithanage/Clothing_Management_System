@@ -11,6 +11,11 @@ import { OrderComponent } from './order/order.component';
 import { ProductComponent } from './product/product.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { PaymentComponent } from './payment/payment.component';
+import {MatSidenavModule} from "@angular/material/sidenav";
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatListModule} from "@angular/material/list";
+import {MatIconModule} from "@angular/material/icon";
 
 @NgModule({
   declarations: [
@@ -20,13 +25,18 @@ import { HomePageComponent } from './home-page/home-page.component';
     OrderComponent,
     ProductComponent,
     NavigationComponent,
-    HomePageComponent
+    HomePageComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatListModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
