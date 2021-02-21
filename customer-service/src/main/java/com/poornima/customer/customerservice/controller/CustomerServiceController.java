@@ -3,6 +3,7 @@ package com.poornima.customer.customerservice.controller;
 import com.poornima.commons.model.customer.Customer;
 import com.poornima.customer.customerservice.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -10,20 +11,22 @@ import java.util.List;
 
 @RestController
 @RequestMapping("services/customer-management/customers")
+@CrossOrigin(origins = "http://localhost:4200")
 public class CustomerServiceController {
 
     @Autowired
     CustomerService customerService;
 
     @PostMapping
-    public Customer save(@RequestBody Customer customer){
-    return customerService.save(customer);
+    public String save(@RequestBody Customer customer){
+        customerService.save(customer);
+        return "Successfully saved " + customer.getName() ;
     }
 
     @GetMapping(value = "{/id}")
     public Customer getCustomer(@PathVariable String id){
         System.out.println("request came on " + LocalDateTime.now() + " 2 ++++++++++++++++++++++");
-    return customerService.findById(id);
+        return customerService.findById(id);
     }
 
     @GetMapping

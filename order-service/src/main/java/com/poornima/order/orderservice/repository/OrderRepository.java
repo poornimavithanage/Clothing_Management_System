@@ -9,4 +9,5 @@ import java.util.Optional;
 @Repository
 public interface OrderRepository extends JpaRepository<Order,Integer> {
 
+    Order findOrderByIdDesc();
 }

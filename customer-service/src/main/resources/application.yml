@@ -8,6 +8,19 @@ spring:
     hibernate:
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-      ddl-auto: none
+      ddl-auto: update
     database-platform: org.hibernate.dialect.MySQL8Dialect
+  application:
+    name: customer
+security:
+  oauth2:
+    resource:
+      token-info-uri: http://localhost:9194/oauth/check_token
+    client:
+      client-id: mobile
+      client-secret: pins
+#server:
+#  port: 8081
+
+
 

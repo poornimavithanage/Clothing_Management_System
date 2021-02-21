@@ -10,11 +10,14 @@ import {CustomerService} from "../customer.service";
 export class AddCustomerComponent implements OnInit {
 
   customer: Customer=new Customer("","","","");
+  id: any;
+  customers: any;
   message: any;
 
   constructor(private service:CustomerService) { }
 
   ngOnInit(): void {
+    this.service.getAllCustomers().subscribe((data)=>this.customers=data);
   }
 
   public registerCustomer(){
@@ -22,5 +25,8 @@ export class AddCustomerComponent implements OnInit {
     this.service.registerCustomer(this.customer).subscribe((data:any)=>this.message=data);
   }
 
+  findCustomerById() {
+    this.service.viewByCustomerId(this.id).subscribe((data)=>this.customers=data);
+  }
 
 }

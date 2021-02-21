@@ -33,9 +33,9 @@
             <div id="errLast"></div>
           </div>
           <div class="form-group">
-            <label for="bootstrap-css"><span class="req">* </span> Address: </label>
+            <label for="bootstrap-css"><span class="req">* </span> Contact: </label>
             <input class="form-control" type="text" [(ngModel)]="customer.contact" name="mobileNumber" id="number"
-                   placeholder="Enter Address" required />
+                   placeholder="Enter Contact Number" required />
             <div id=""></div>
           </div>
           <div class="form-group">
@@ -44,5 +44,45 @@
         </fieldset>
       </form>
     </div>
+
+
+<!--search customer -->
+
+<div class="row col-md-6 ">
+  <div class="container text-right">
+    <div id="custom-search-input" >
+      <div class="input-group col-md-6" style="text-align: center">
+        <input type="text" class="search-query form-control" placeholder="Search Code"  name="code" [(ngModel)]="id"/>
+        <span class="input-group-btn">
+                                         <button class="btn btn-danger" type="button" (click)="findCustomerById()">
+                                             <span class=" glyphicon glyphicon-search"></span>
+                                         </button>
+                                     </span>
+      </div>
+    </div>
+  </div>
+  <table class="table table-striped custab">
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Address</th>
+      <th>Contact</th>
+      <!-- <th>Action</th> -->
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let customer of customers">
+      <td>{{customer.id}}</td>
+      <td>{{customer.name}}</td>
+      <td>{{customer.address}}</td>
+      <td>{{customer.contact}}</td>
+      <!-- <td class="text-center"><button class="btn btn-danger btn-xs" (click)="delteUser(user.id)"><span class="glyphicon glyphicon-remove"></span> Delete</button></td> -->
+    </tr>
+    </tbody>
+  </table>
+</div>
+
   </div>
 </div>
+

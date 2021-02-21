@@ -3,11 +3,9 @@ package com.poornima.order.orderservice.controller;
 import com.poornima.commons.model.order.Order;
 import com.poornima.order.orderservice.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("services/orders")
 public class OrderController {
@@ -19,5 +17,9 @@ public class OrderController {
        return orderService.save(order);
     }
 
-
+    @GetMapping
+    public Order fetch(){
+        System.out.println("------order--------");
+        return orderService.getOrderRecord();
+    }
 }

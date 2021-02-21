@@ -10,4 +10,6 @@ public interface CustomerService {
     Customer findById(String id);
 
     List<Customer>findAll();
+
+    Customer update(Customer customer);
 }
