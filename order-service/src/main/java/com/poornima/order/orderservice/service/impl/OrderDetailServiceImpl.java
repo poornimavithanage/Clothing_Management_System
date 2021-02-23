@@ -7,6 +7,7 @@ import com.poornima.order.orderservice.repository.OrderRepository;
 import com.poornima.order.orderservice.service.OrderDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -21,7 +22,10 @@ public class OrderDetailServiceImpl implements OrderDetailService {
     @Autowired
     OrderDetailRepository orderDetailRepository;
 
+    @Autowired
+    OrderRepository orderRepository;
 
+    @LoadBalanced
     @Bean
     RestTemplate getRestTemplate(RestTemplateBuilder builder) {
         return builder.build();
@@ -33,8 +37,9 @@ public class OrderDetailServiceImpl implements OrderDetailService {
     @Override
     public OrderDetail save(OrderDetail orderDetail) {
         Product product = restTemplate.getForObject
-                ("http://services/product-management/products/"
+                ("http://product/services/product-management/products/"
                         +orderDetail.getProductCode(),Product.class);
+        orderDetail.setOrderId(orderRepository.findTopByOrderByIdDesc().getId());
         BigDecimal unitPrice = product.getUnitPrice();
         orderDetail.setPrice(unitPrice.multiply(BigDecimal.valueOf(orderDetail.getQuantity())));
         System.out.println(orderDetail);
@@ -45,6 +50,17 @@ public class OrderDetailServiceImpl implements OrderDetailService {
     public List<OrderDetail> findByOrderId(int id){
         return orderDetailRepository.findByOrderId(id);
     }
+
+
+
+    @Override
+    public List<OrderDetail> findOrderDetail() {
+       int id = orderRepository.findTopByOrderByIdDesc().getId();
+        return orderDetailRepository.findByOrderId(id);
+
+    }
+
+
 
     @Override
     public OrderDetail delete(int id) {

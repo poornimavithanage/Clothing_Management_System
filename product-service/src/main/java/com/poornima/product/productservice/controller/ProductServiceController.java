@@ -13,17 +13,19 @@ import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("services/product-management/products")
+@CrossOrigin(origins = "http://localhost:4200")
 public class ProductServiceController {
 
     @Autowired
     ProductService productService;
 
     @PostMapping
-    public Product save(@RequestBody Product product){
-        return productService.save(product);
+    public String save(@RequestBody Product product){
+         productService.save(product);
+        return "Successfully saved " + product.getCode();
     }
 
-    @GetMapping(value = "{/code}")
+    @GetMapping(value = "/{code}")
     public Product getProduct(@PathVariable String code){
         System.out.println("request came on " + LocalDateTime.now() + " 3 ++++++++++++++++++++++");
         return productService.findById(code);

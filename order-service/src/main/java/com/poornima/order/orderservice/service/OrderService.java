@@ -7,6 +7,5 @@ public interface OrderService {
 
 Order save(Order order);
 
-Order getOrderRecord();
-
+Order getRecord();
 }

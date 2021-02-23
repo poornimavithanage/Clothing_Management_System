@@ -12,4 +12,6 @@ public interface OrderDetailService {
     OrderDetail delete(int id);
 
     List<OrderDetail> findByOrderId(int id);
+
+    List<OrderDetail> findOrderDetail();
 }

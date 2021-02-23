@@ -41,5 +41,10 @@ public class OrderDetailController {
 
     }
 
+    @GetMapping
+    public List<OrderDetail>fetchByOrderId(){
+        return orderDetailService.findOrderDetail();
+    }
+
 
 }
