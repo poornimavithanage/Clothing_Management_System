@@ -9,6 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.Date;
+
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -18,6 +23,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order save(Order order) {
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
+        Date date = new Date();
+        order.setDate((dateFormat.format(date)));
         return orderRepository.save(order);
     }
 

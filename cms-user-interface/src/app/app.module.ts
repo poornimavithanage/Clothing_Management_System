@@ -16,6 +16,12 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatListModule} from "@angular/material/list";
 import {MatIconModule} from "@angular/material/icon";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { HomeComponent } from './home/home.component';
+import { ProfileComponent } from './profile/profile.component';
+import { RegisterComponent } from './register/register.component';
+import { BoardUserComponent } from './board-user/board-user.component';
+import { BoardModeratorComponent } from './board-moderator/board-moderator.component';
+import { BoardAdminComponent } from './board-admin/board-admin.component';
 
 
 @NgModule({
@@ -26,7 +32,13 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     ProductComponent,
     NavigationComponent,
     HomePageComponent,
-    PaymentComponent
+    PaymentComponent,
+    HomeComponent,
+    ProfileComponent,
+    RegisterComponent,
+    BoardUserComponent,
+    BoardModeratorComponent,
+    BoardAdminComponent
 
   ],
   imports: [

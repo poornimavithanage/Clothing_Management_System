@@ -23,7 +23,7 @@ public class CustomerServiceController {
         return "Successfully saved " + customer.getName() ;
     }
 
-    @GetMapping(value = "{/id}")
+    @GetMapping(value = "/{id}")
     public Customer getCustomer(@PathVariable String id){
         System.out.println("request came on " + LocalDateTime.now() + " 2 ++++++++++++++++++++++");
         return customerService.findById(id);

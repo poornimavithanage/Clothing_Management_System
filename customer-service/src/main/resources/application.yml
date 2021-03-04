@@ -12,15 +12,15 @@ spring:
     database-platform: org.hibernate.dialect.MySQL8Dialect
   application:
     name: customer
-security:
-  oauth2:
-    resource:
-      token-info-uri: http://localhost:9194/oauth/check_token
-    client:
-      client-id: mobile
-      client-secret: pins
-#server:
-#  port: 8081
+#security:
+#  oauth2:
+#    resource:
+#      token-info-uri: http://localhost:9194/oauth/check_token
+#    client:
+#      client-id: mobile
+#      client-secret: pins
+server:
+  port: 8083
 
 
 

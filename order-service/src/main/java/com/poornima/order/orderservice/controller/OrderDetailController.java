@@ -20,10 +20,11 @@ public class OrderDetailController {
 
     @PostMapping
     public OrderDetail save(@RequestBody OrderDetail orderDetail){
+
         return orderDetailService.save(orderDetail);
     }
 
-    @GetMapping(value = "{/id}")
+    @GetMapping(value = "/{id}")
     public OrderDetailDTO fetch(@PathVariable(value = "id")int id){
         OrderDetailDTO orderDetailDTO = new OrderDetailDTO();
         orderDetailDTO.setOrderDetailList(orderDetailService.findByOrderId(id));

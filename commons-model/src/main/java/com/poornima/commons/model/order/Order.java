@@ -16,5 +16,13 @@ public class Order  {
 @Id
 @GeneratedValue
 private int id;
-private LocalDateTime date;
+private String date;
+
+public Order() {
+    }
+
+    public Order(int id, String date) {
+        this.id = id;
+        this.date = date;
+    }
 }

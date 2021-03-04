@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {Customer} from "../customer";
-import {CustomerService} from "../customer.service";
+import {CustomerService} from "../_services/customer.service";
+import {ActivatedRoute} from "@angular/router";
+import {TokenStorageService} from "../_services/token-storage.service";
+import {FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-add-customer',
@@ -13,8 +16,9 @@ export class AddCustomerComponent implements OnInit {
   id: any;
   customers: any;
   message: any;
-
-  constructor(private service:CustomerService) { }
+  customerForm: FormGroup;
+  currentUser: any;
+  constructor(private service:CustomerService,private route: ActivatedRoute,private token: TokenStorageService) { }
 
   ngOnInit(): void {
     this.service.getAllCustomers().subscribe((data)=>this.customers=data);
