@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -36,9 +37,9 @@ public class ProductServiceImpl implements ProductService{
     @Override
     public Product update(Product product) {
         product.setCode(product.getCode());
-        Product updateProduct = productRepository.save(product);
-        return updateProduct;
+       return productRepository.save(product);
     }
+
 
     @Override
     public void delete(String code) {

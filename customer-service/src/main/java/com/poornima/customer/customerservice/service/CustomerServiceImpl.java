@@ -40,4 +40,9 @@ public class CustomerServiceImpl implements CustomerService{
         customer.setId(customer.getId());
         return customerRepository.save(customer);
     }
+
+    @Override
+    public Customer findCustomerByContact(String contact) {
+        return customerRepository.findByContact(contact);
+    }
 }

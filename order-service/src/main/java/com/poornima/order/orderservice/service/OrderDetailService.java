@@ -9,7 +9,7 @@ public interface OrderDetailService {
 
     OrderDetail save(OrderDetail orderDetail);
 
-    OrderDetail delete(int id);
+    void delete(int id);
 
     List<OrderDetail> findByOrderId(int id);
 

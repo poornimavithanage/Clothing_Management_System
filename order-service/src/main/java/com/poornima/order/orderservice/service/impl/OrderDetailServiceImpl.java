@@ -40,6 +40,7 @@ public class OrderDetailServiceImpl implements OrderDetailService {
                 ("http://product/services/product-management/products/"
                         +orderDetail.getProductCode(),Product.class);
         orderDetail.setOrderId(orderRepository.findTopByOrderByIdDesc().getId());
+        assert product != null;
         BigDecimal unitPrice = product.getUnitPrice();
         orderDetail.setPrice(unitPrice.multiply(BigDecimal.valueOf(orderDetail.getQuantity())));
         System.out.println(orderDetail);
@@ -63,9 +64,7 @@ public class OrderDetailServiceImpl implements OrderDetailService {
 
 
     @Override
-    public OrderDetail delete(int id) {
-        Optional<OrderDetail> optionalOrderDetail = orderDetailRepository.findById(id);
-        OrderDetail orderDetail = optionalOrderDetail.get();
-        return orderDetailRepository.save(orderDetail);
+    public void delete(int id) {
+        orderDetailRepository.deleteById(id);
     }
 }

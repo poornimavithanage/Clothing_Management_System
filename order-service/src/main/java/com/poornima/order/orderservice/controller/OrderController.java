@@ -18,7 +18,8 @@ public class OrderController {
         return orderService.save(order);
     }
 
-    @GetMapping(value = "/{id}")
+//    @GetMapping(value = "/{id}")
+    @GetMapping
     public Order fetch(){
         System.out.println("------order--------");
         return orderService.getRecord();

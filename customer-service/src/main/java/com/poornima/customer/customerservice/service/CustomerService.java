@@ -12,4 +12,6 @@ public interface CustomerService {
     List<Customer>findAll();
 
     Customer update(Customer customer);
+
+    Customer findCustomerByContact(String contact);
 }

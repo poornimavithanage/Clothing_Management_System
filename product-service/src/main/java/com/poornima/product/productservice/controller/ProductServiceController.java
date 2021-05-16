@@ -1,5 +1,6 @@
 package com.poornima.product.productservice.controller;
 
+import com.poornima.commons.model.customer.Customer;
 import com.poornima.commons.model.product.Product;
 import com.poornima.product.productservice.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,10 +37,15 @@ public class ProductServiceController {
     return productService.findAll();
     }
 
-    @PutMapping(value = "{/code}")
-    public ResponseEntity<Product>update(@RequestBody Product product){
+    @PutMapping(value = "/{code}")
+    public ResponseEntity update(@RequestBody Product product){
         Product updateProduct = productService.update(product);
-        return ResponseEntity.ok().body(updateProduct);
+        try {
+            return ResponseEntity.ok().body(updateProduct);
+        } catch (NullPointerException nullPointerException) {
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body("Product Code does not exist");
+        }
+
     }
 
     @DeleteMapping(value = "/{code}")

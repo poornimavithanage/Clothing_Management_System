@@ -19,9 +19,13 @@ public class OrderDetailController {
     OrderDetailService orderDetailService;
 
     @PostMapping
-    public OrderDetail save(@RequestBody OrderDetail orderDetail){
-
-        return orderDetailService.save(orderDetail);
+    public ResponseEntity<OrderDetail> save(@RequestBody OrderDetail orderDetail){
+        OrderDetail newOrderDetail = orderDetailService.save(orderDetail);
+        try {
+            return ResponseEntity.ok().body(newOrderDetail);
+        } catch (NullPointerException nullPointerException) {
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(newOrderDetail);
+        }
     }
 
     @GetMapping(value = "/{id}")
@@ -31,19 +35,19 @@ public class OrderDetailController {
         return orderDetailDTO;
     }
 
-    @DeleteMapping(value = "{/id}")
-    public ResponseEntity delete(@RequestParam(value = "id") int id){
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity deleteProduct(@PathVariable int id){
         try {
             orderDetailService.delete(id);
-            return ResponseEntity.status(HttpStatus.OK).body("Order Details deleted successfully");
+            return ResponseEntity.ok().body("Order Detail deleted Successfully");
         } catch (NoSuchElementException e) {
-           return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Order Detail ID does not exist");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Order Detail does not exist");
         }
-
     }
 
-    @GetMapping
+    @GetMapping()
     public List<OrderDetail>fetchByOrderId(){
+        System.out.println("------order details-----------");
         return orderDetailService.findOrderDetail();
     }
 
